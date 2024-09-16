@@ -6,8 +6,10 @@ import jmespath
 import json
 
 
+# function to be triggered when a new s3 object is created
 def lambda_handler(event, context):
 
+    # initializing aws s3 client
     s3 = boto3.client("s3")
     bucket_name: str = "eswar-maganti-test-bucket"
 
@@ -49,6 +51,7 @@ def lambda_handler(event, context):
     else:
         print(f"*** Success: The organizing of S3 Bucket: {bucket_name} is successfully completed ***")
 
+    # returning the status code
     return {
         'statusCode': 200,
         'body': json.dumps(f'Successfully organized the S3 Bucket {bucket_name}')
